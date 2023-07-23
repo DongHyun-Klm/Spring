@@ -21,6 +21,7 @@ import static hello.itemservice.domain.QItem.*;
 @Repository
 @Transactional
 public class JpaItemRepositoryV3 implements ItemRepository {
+
     private final EntityManager em;
     private final JPAQueryFactory query;
 
@@ -67,6 +68,7 @@ public class JpaItemRepositoryV3 implements ItemRepository {
                 .fetch();
         return result;
     }
+
     @Override
     public List<Item> findAll(ItemSearchCond cond) {
         String itemName = cond.getItemName();
@@ -78,6 +80,7 @@ public class JpaItemRepositoryV3 implements ItemRepository {
                 .fetch();
         return result;
     }
+
     private BooleanExpression likeItemName(String itemName) {
         if (StringUtils.hasText(itemName)) {
             return item.itemName.like("%" + itemName + "%");
